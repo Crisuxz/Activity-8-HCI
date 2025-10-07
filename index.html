@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Registrate Rápidamente!</title>
+<style>
+body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+.header {
+    width: 100vw;
+    background: linear-gradient(135deg, #324893 0%, #2a3d7a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 56px 0 46px 0;
+    box-shadow: 0 4px 20px rgba(50, 72, 147, 0.3);
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.key-svg {
+    width: 110px;
+    height: 110px;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2));
+}
+.header-text {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    align-items: flex-start;
+    justify-content: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.header-title {
+    font-size: 3.4em;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 14px;
+    color: #ffffff;
+}
+.header-desc {
+    font-size: 1.6em;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #f1f3f9;
+    opacity: 0.95;
+}
+.container {
+    width: 60%;
+    margin: 30px auto;
+    text-align: center;
+}
+h2 {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+form {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid rgba(50, 72, 147, 0.1);
+}
+.row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.field-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.field-label {
+    font-size: 0.95em;
+    color: #324893;
+    margin-bottom: 8px;
+    text-align: left;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.required {
+    color: #d32f2f;
+    margin-left: 4px;
+    font-weight: bold;
+}
+input, select {
+    padding: 14px 16px;
+    font-size: 1em;
+    border: 2px solid #dadada;
+    border-radius: 8px;
+    outline: none;
+    background: #f8f9fa;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+    color: #495057;
+    font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
+}
+input:focus, select:focus {
+    border-color: #324893;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(50, 72, 147, 0.15);
+    transform: translateY(-1px);
+}
+input::placeholder {
+    color: #6c757d;
+    font-weight: 400;
+}
+input[type="radio"] {
+    flex: none;
+    margin-right: 8px;
+    accent-color: #324893;
+    transform: scale(1.2);
+}
+label {
+    font-size: 1.1em;
+    color: #324893;
+    margin-bottom: 12px;
+    display: block;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(50, 72, 147, 0.1);
+}
+button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #324893 0%, #2a3d7a 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(50, 72, 147, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+button:hover {
+    background: linear-gradient(135deg, #2a3d7a 0%, #1e2d5a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(50, 72, 147, 0.4);
+}
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(50, 72, 147, 0.3);
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 35%;
+    gap: 8px;
+}
+.radio-group label {
+    font-size: 1.05em;
+    color: #495057;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.radio-group label:hover {
+    color: #324893;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+    color: #d32f2f;
+    font-size: 0.85em;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-align: left;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgba(211, 47, 47, 0.05);
+    transition: all 0.3s ease;
+}
+
+.error-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+input.error, select.error {
+    border-color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.03);
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+input.success, select.success {
+    border-color: #388e3c;
+    background-color: rgba(56, 142, 60, 0.03);
+}
+
+/* Estilos para el enlace de políticas */
+.policy-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #6c757d;
+    font-size: 0.95em;
+}
+
+.policy-link a {
+    color: #324893;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    border-bottom: 1px dashed #324893;
+    padding-bottom: 1px;
+}
+
+.policy-link a:hover {
+    color: #2a3d7a;
+    border-bottom: 1px solid #2a3d7a;
+}
+
+@media (max-width: 900px) {
+    .container { 
+        width: 96%; 
+        margin: 20px auto;
+    }
+    .header-title { 
+        font-size: 2.1em; 
+    }
+    .header-desc { 
+        font-size: 1em; 
+    }
+    .header-inner { 
+        gap: 18px; 
+    }
+    .key-svg { 
+        width: 65px; 
+        height: 65px; 
+    }
+    .header { 
+        padding: 32px 0 32px 0; 
+    }
+    form {
+        padding: 25px 18px;
+    }
+    .row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .radio-group {
+        margin-left: 0;
+        align-items: center;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+}
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <!-- Llave SVG (blanca, minimalista como en la imagen) -->
+      <svg class="key-svg" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 64 64">
+        <circle cx="17.5" cy="32" r="11"/>
+        <path d="M28 32h26l-7 8-4-4-7 7"/>
+      </svg>
+      <div class="header-text">
+        <span class="header-title">Regístrate</span>
+        <span class="header-desc">en Software Shop y disfruta del<br>contenido que tenemos para ti.</span>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <h2>¡Registrate Rápidamente!</h2>
+    <form id="registrationForm">
+      <div class="row">
+        <div class="field-group">
+          <div class="field-label">Tipo Entidad <span class="required">*</span></div>
+          <select id="entityType" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="persona">Persona</option>
+            <option value="empresa">Empresa</option>
+          </select>
+          <div class="error-message" id="entityTypeError"></div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Nombre de Entidad <span class="required">*</span></div>
+          <input type="text" id="entityName" placeholder="Escribe el nombre de tu entidad o empresa">
+          <div class="error-message" id="entityNameError"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field-group">
+          <div class="field-label">Nombre <span class="required">*</span></div>
+          <input type="text" id="firstName" placeholder="Tu nombre">
+          <div class="error-message" id="firstNameError"></div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Apellido <span class="required">*</span></div>
+          <input type="text" id="lastName" placeholder="Tu apellido">
+          <div class="error-message" id="lastNameError"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field-group">
+          <div class="field-label">Ciudad <span class="required">*</span></div>
+          <input type="text" id="city" placeholder="Tu ciudad de residencia">
+          <div class="error-message" id="cityError"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field-group">
+          <div class="field-label">Indicativo <span class="required">*</span></div>
+          <input type="text" id="indicative" placeholder="Código de área">
+          <div class="error-message" id="indicativeError"></div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Teléfono <span class="required">*</span></div>
+          <input type="text" id="phone" placeholder="Número de teléfono o celular">
+          <div class="error-message" id="phoneError"></div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Extensión</div>
+          <input type="text" id="extension" placeholder="Extensión (opcional)">
+          <div class="error-message" id="extensionError"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field-group">
+          <div class="field-label">Correo electrónico <span class="required">*</span></div>
+          <input type="email" id="email" placeholder="tu.correo@ejemplo.com">
+          <div class="error-message" id="emailError"></div>
+        </div>
+      </div>
+      <label>¿Deseas recibir correos con información de los productos del portafolio de tu interés?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="newsletter" value="yes" checked> Sí, Gracias</label>
+        <label><input type="radio" name="newsletter" value="no"> No, Gracias</label>
+      </div>
+      <button type="submit">Registrar Información</button>
+      
+      <!-- Enlace de políticas -->
+      <div class="policy-link">
+        Conozca nuestras <a href="#">políticas de tratamiento de datos.</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('registrationForm');
+      
+      // Elementos del formulario
+      const entityType = document.getElementById('entityType');
+      const entityName = document.getElementById('entityName');
+      const firstName = document.getElementById('firstName');
+      const lastName = document.getElementById('lastName');
+      const city = document.getElementById('city');
+      const indicative = document.getElementById('indicative');
+      const phone = document.getElementById('phone');
+      const extension = document.getElementById('extension');
+      const email = document.getElementById('email');
+      
+      // Elementos de error
+      const entityTypeError = document.getElementById('entityTypeError');
+      const entityNameError = document.getElementById('entityNameError');
+      const firstNameError = document.getElementById('firstNameError');
+      const lastNameError = document.getElementById('lastNameError');
+      const cityError = document.getElementById('cityError');
+      const indicativeError = document.getElementById('indicativeError');
+      const phoneError = document.getElementById('phoneError');
+      const extensionError = document.getElementById('extensionError');
+      const emailError = document.getElementById('emailError');
+      
+      // Iconos SVG para errores
+      const errorIcon = `<svg class="error-icon" viewBox="0 0 24 24" fill="#d32f2f">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+      </svg>`;
+      
+      // Función para mostrar error
+      function showError(element, errorElement, message) {
+        element.classList.add('error');
+        element.classList.remove('success');
+        errorElement.innerHTML = errorIcon + message;
+        errorElement.style.display = 'flex';
+      }
+      
+      // Función para mostrar éxito
+      function showSuccess(element, errorElement) {
+        element.classList.remove('error');
+        element.classList.add('success');
+        errorElement.innerHTML = '';
+        errorElement.style.display = 'none';
+      }
+      
+      // Función para limpiar mensaje
+      function clearMessage(errorElement) {
+        errorElement.innerHTML = '';
+        errorElement.style.display = 'none';
+      }
+      
+      // Función para validar campos requeridos
+      function validateRequired(value) {
+        return value && value.trim() !== '';
+      }
+      
+      // Función para validar email
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+      
+      // Función para validar teléfono
+      function validatePhone(phone) {
+        const re = /^[\d\s\-\+\(\)]{8,15}$/;
+        return re.test(phone);
+      }
+      
+      // Función para validar solo números
+      function validateNumeric(value) {
+        const re = /^\d+$/;
+        return re.test(value);
+      }
+      
+      // Función para validar solo letras y espacios
+      function validateText(value) {
+        const re = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        return re.test(value);
+      }
+      
+      // Validación en tiempo real
+      entityType.addEventListener('change', function() {
+        if (entityType.value === '') {
+          showError(entityType, entityTypeError, 'Debes seleccionar un tipo de entidad. Elige entre Persona o Empresa.');
+        } else {
+          showSuccess(entityType, entityTypeError);
+        }
+      });
+      
+      entityName.addEventListener('blur', function() {
+        if (!validateRequired(entityName.value)) {
+          showError(entityName, entityNameError, 'El nombre de la entidad es obligatorio. Escribe el nombre de tu entidad o empresa.');
+        } else if (!validateText(entityName.value)) {
+          showError(entityName, entityNameError, 'El nombre contiene caracteres no válidos. Usa solo letras y espacios.');
+        } else {
+          showSuccess(entityName, entityNameError);
+        }
+      });
+      
+      firstName.addEventListener('blur', function() {
+        if (!validateRequired(firstName.value)) {
+          showError(firstName, firstNameError, 'El nombre es obligatorio. Escribe tu nombre.');
+        } else if (firstName.value.length < 2) {
+          showError(firstName, firstNameError, 'El nombre es demasiado corto. Debe tener al menos 2 caracteres.');
+        } else if (!validateText(firstName.value)) {
+          showError(firstName, firstNameError, 'El nombre contiene caracteres no válidos. Usa solo letras y espacios.');
+        } else {
+          showSuccess(firstName, firstNameError);
+        }
+      });
+      
+      lastName.addEventListener('blur', function() {
+        if (!validateRequired(lastName.value)) {
+          showError(lastName, lastNameError, 'El apellido es obligatorio. Escribe tu apellido.');
+        } else if (lastName.value.length < 2) {
+          showError(lastName, lastNameError, 'El apellido es demasiado corto. Debe tener al menos 2 caracteres.');
+        } else if (!validateText(lastName.value)) {
+          showError(lastName, lastNameError, 'El apellido contiene caracteres no válidos. Usa solo letras y espacios.');
+        } else {
+          showSuccess(lastName, lastNameError);
+        }
+      });
+      
+      city.addEventListener('blur', function() {
+        if (!validateRequired(city.value)) {
+          showError(city, cityError, 'La ciudad es obligatoria. Escribe tu ciudad.');
+        } else if (!validateText(city.value)) {
+          showError(city, cityError, 'El nombre de la ciudad contiene caracteres no válidos. Usa solo letras y espacios.');
+        } else {
+          showSuccess(city, cityError);
+        }
+      });
+      
+      indicative.addEventListener('blur', function() {
+        if (!validateRequired(indicative.value)) {
+          showError(indicative, indicativeError, 'El indicativo es obligatorio. Escribe el código de área de tu país.');
+        } else if (!validateNumeric(indicative.value)) {
+          showError(indicative, indicativeError, 'El indicativo debe contener solo números. Escribe solo dígitos numéricos.');
+        } else {
+          showSuccess(indicative, indicativeError);
+        }
+      });
+      
+      phone.addEventListener('blur', function() {
+        if (!validateRequired(phone.value)) {
+          showError(phone, phoneError, 'El teléfono es obligatorio. Escribe tu número de teléfono.');
+        } else if (!validatePhone(phone.value)) {
+          showError(phone, phoneError, 'Formato de teléfono no válido. Usa entre 8 y 15 dígitos, puedes incluir espacios, guiones, paréntesis o el signo +.');
+        } else {
+          showSuccess(phone, phoneError);
+        }
+      });
+      
+      extension.addEventListener('blur', function() {
+        if (extension.value && !validateNumeric(extension.value)) {
+          showError(extension, extensionError, 'La extensión debe contener solo números. Escribe solo dígitos numéricos o deja el campo vacío.');
+        } else if (extension.value) {
+          showSuccess(extension, extensionError);
+        } else {
+          clearMessage(extensionError);
+          extension.classList.remove('error');
+          extension.classList.remove('success');
+        }
+      });
+      
+      email.addEventListener('blur', function() {
+        if (!validateRequired(email.value)) {
+          showError(email, emailError, 'El email es obligatorio. Escribe tu dirección de correo electrónico.');
+        } else if (!validateEmail(email.value)) {
+          showError(email, emailError, 'Formato de email no válido. Usa un formato válido como ejemplo@correo.com.');
+        } else {
+          showSuccess(email, emailError);
+        }
+      });
+      
+      // Validación al enviar el formulario
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+        
+        // Validar todos los campos
+        if (entityType.value === '') {
+          showError(entityType, entityTypeError, 'Debes seleccionar un tipo de entidad. Elige entre Persona o Empresa.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(entityName.value)) {
+          showError(entityName, entityNameError, 'El nombre de la entidad es obligatorio. Escribe el nombre de tu entidad o empresa.');
+          isValid = false;
+        } else if (!validateText(entityName.value)) {
+          showError(entityName, entityNameError, 'El nombre contiene caracteres no válidos. Usa solo letras y espacios.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(firstName.value)) {
+          showError(firstName, firstNameError, 'El nombre es obligatorio. Escribe tu nombre.');
+          isValid = false;
+        } else if (firstName.value.length < 2) {
+          showError(firstName, firstNameError, 'El nombre es demasiado corto. Debe tener al menos 2 caracteres.');
+          isValid = false;
+        } else if (!validateText(firstName.value)) {
+          showError(firstName, firstNameError, 'El nombre contiene caracteres no válidos. Usa solo letras y espacios.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(lastName.value)) {
+          showError(lastName, lastNameError, 'El apellido es obligatorio. Escribe tu apellido.');
+          isValid = false;
+        } else if (lastName.value.length < 2) {
+          showError(lastName, lastNameError, 'El apellido es demasiado corto. Debe tener al menos 2 caracteres.');
+          isValid = false;
+        } else if (!validateText(lastName.value)) {
+          showError(lastName, lastNameError, 'El apellido contiene caracteres no válidos. Usa solo letras y espacios.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(city.value)) {
+          showError(city, cityError, 'La ciudad es obligatoria. Escribe tu ciudad.');
+          isValid = false;
+        } else if (!validateText(city.value)) {
+          showError(city, cityError, 'El nombre de la ciudad contiene caracteres no válidos. Usa solo letras y espacios.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(indicative.value)) {
+          showError(indicative, indicativeError, 'El indicativo es obligatorio. Escribe el código de área de tu país.');
+          isValid = false;
+        } else if (!validateNumeric(indicative.value)) {
+          showError(indicative, indicativeError, 'El indicativo debe contener solo números. Escribe solo dígitos numéricos.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(phone.value)) {
+          showError(phone, phoneError, 'El teléfono es obligatorio. Escribe tu número de teléfono.');
+          isValid = false;
+        } else if (!validatePhone(phone.value)) {
+          showError(phone, phoneError, 'Formato de teléfono no válido. Usa entre 8 y 15 dígitos, puedes incluir espacios, guiones, paréntesis o el signo +.');
+          isValid = false;
+        }
+        
+        if (extension.value && !validateNumeric(extension.value)) {
+          showError(extension, extensionError, 'La extensión debe contener solo números. Escribe solo dígitos numéricos o deja el campo vacío.');
+          isValid = false;
+        }
+        
+        if (!validateRequired(email.value)) {
+          showError(email, emailError, 'El email es obligatorio. Escribe tu dirección de correo electrónico.');
+          isValid = false;
+        } else if (!validateEmail(email.value)) {
+          showError(email, emailError, 'Formato de email no válido. Usa un formato válido como ejemplo@correo.com.');
+          isValid = false;
+        }
+        
+        // Si todo es válido, enviar formulario
+        if (isValid) {
+          alert('¡Formulario enviado correctamente!');
+          form.reset();
+          
+          // Limpiar todos los mensajes
+          const errorMessages = document.querySelectorAll('.error-message');
+          errorMessages.forEach(msg => {
+            msg.innerHTML = '';
+            msg.style.display = 'none';
+          });
+          
+          // Limpiar clases de los campos
+          const fields = document.querySelectorAll('input, select');
+          fields.forEach(field => {
+            field.classList.remove('error', 'success');
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
